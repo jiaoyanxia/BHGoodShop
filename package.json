@@ -1,0 +1,23 @@
+{
+  "name": "hellonewuni",
+  "version": "1.0.0",
+  "description": "黑马优购是一个基于 uniapp 开发的微信小程序商城项目",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiaoyanxia/BHGoodShop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiaoyanxia/BHGoodShop/issues"
+  },
+  "homepage": "https://github.com/jiaoyanxia/BHGoodShop#readme",
+  "dependencies": {
+    "@escook/request-miniprogram": "^0.2.1"
+  }
+}

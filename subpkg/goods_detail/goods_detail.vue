@@ -1,6 +1,6 @@
 <template>
 	<view>
-		MY
+		
 	</view>
 </template>
 
