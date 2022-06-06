@@ -1,9 +1,9 @@
 <template>
 	<view>
 		<view class="goods-list">
-			<block v-for="(goods, i) in goodsList" :key="i" @click="gotoDetail(item)">
+			<view v-for="(goods, i) in goodsList" :key="i" @click="gotoDetail(goods)">
 				<my-goodsitem :goods="goods"></my-goodsitem>
-			</block>
+			</view>
 		</view>
 	</view>
 </template>
@@ -54,7 +54,7 @@
 				this.getGoodsList(() => uni.stopPullDownRefresh())
 			},
 			// 点击跳转到商品详情页面
-			gotoDetail(){
+			gotoDetail(item){
 				uni.navigateTo({
 					url: '/subpkg/goods_detail/goods_detail?goods_id=' + item.goods_id
 				})
