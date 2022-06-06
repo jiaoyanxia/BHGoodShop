@@ -10,6 +10,9 @@
 			return {
 				
 			};
+		},
+		onLoad(e) {
+			console.log(e.goods_id);
 		}
 	}
 </script>

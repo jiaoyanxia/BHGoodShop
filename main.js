@@ -39,14 +39,6 @@ $http.afterRequest = function() {
 	uni.hideLoading()
 }
 
-// 失败消息提示
-// uni.$showMsg = function () {
-// 	uni.$showMsg({
-// 		    title,
-// 		    duration,
-// 		    icon: 'none',
-// 	})
-// }
 
 uni.$showMsg = function (title = '数据加载失败！', duration = 1500) {
   uni.showToast({
