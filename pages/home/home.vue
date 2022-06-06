@@ -31,7 +31,8 @@
 					</navigator>
 					<!-- 右侧 4 个小图片的盒子 -->
 					<view class="right-img-box">
-						<navigator class="right-img-item" v-for="(item2, i2) in item.product_list" :key="i2" v-if="i2 !== 0" :url="item2.url">
+						<navigator class="right-img-item" v-for="(item2, i2) in item.product_list" :key="i2"
+							v-if="i2 !== 0" :url="item2.url">
 							<image :src="item2.image_src" mode="widthFix" :style="{width: item2.image_width + 'rpx'}">
 							</image>
 						</navigator>
@@ -82,14 +83,14 @@
 				} = await uni.$http.get('/api/public/v1/home/floordata')
 				if (res.meta.status !== 200) return uni.$showMsg()
 				console.log(res.message);
-				
+
 				res.message.forEach(floor => {
 					floor.product_list.forEach(prod => {
 						console.log(prod.navigator_url.split('?')[1]);
-						prod.url = '/subpkg/goods_list/goods_list?' + prod.navigator_url.split('?')[1] 
+						prod.url = '/subpkg/goods_list/goods_list?' + prod.navigator_url.split('?')[1]
 					})
 				})
-				
+
 				this.floorList = res.message
 			},
 			// 点击分类跳转
