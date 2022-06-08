@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="cart-container">
 		<!-- 收货地址组件 -->
 		<my-address></my-address>
 		<!-- 商品列表的标题区域 -->
@@ -18,7 +18,7 @@
 				</uni-swipe-action-item>
 			</block>
 		</uni-swipe-action>
-
+		<my-settle></my-settle>
 	</view>
 </template>
 
@@ -92,5 +92,8 @@
 			font-size: 14px;
 			margin-left: 10px;
 		}
+	}
+	.cart-container {
+	  padding-bottom: 50px;
 	}
 </style>

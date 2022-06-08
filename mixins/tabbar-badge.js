@@ -4,8 +4,15 @@ export default {
   computed: {
     ...mapGetters('m_cart', ['total'])
   },
+  // 首次渲染时更新
   onShow() {
     this.setBadge()
+  },
+  // 每次渲染时更新
+  watch:{
+	total(){
+		this.setBadge()
+	}
   },
   methods: {
     setBadge() {

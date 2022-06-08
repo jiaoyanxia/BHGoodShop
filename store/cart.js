@@ -50,7 +50,12 @@ export default {
     },
     // 更新购物车中所有商品的勾选状态
     updateAllGoodsState(state, newState) {
-		// console.log(this.cart);
+		// const all = state.cart.map(i=>{
+		// 	i.goods_state = !i.goods_state
+		// })
+		state.cart.forEach(x => x.goods_state= newState)
+		this.commit('m_cart/saveToStorage')
+		// console.log( newState ? '选中成功': "" );
     }
   },
 
@@ -59,13 +64,13 @@ export default {
     total(state) {
       return state.cart.reduce((total, item) => total += item.goods_count, 0)
     },
-    // // 购物车中已勾选商品的总数量
-    // checkedCount(state) {
-    //   return state.cart.filter(x => x.goods_state).reduce((total, item) => total += item.goods_count, 0)
-    // },
-    // // 已勾选商品的总价格
-    // checkedGoodsAmount(state) {
-    //   return state.cart.filter(x => x.goods_state).reduce((total, item) => total += item.goods_count * item.goods_price, 0).toFixed(2)
-    // }
-  }
+    // 购物车中已勾选商品的总数量
+	checkedCount(state) {
+		// 查找购物车列表中已被选中的商品，将他们的数量依次添加 ， 默认值为 0 
+		return state.cart.filter(i => i.goods_state).reduce((total,item) => total += item.goods_count, 0)
+	},
+	checkedGoodsPrice(state){
+		return state.cart.filter(i=> i.goods_state).reduce((total, item) => total += item.goods_count * item.goods_price, 0).toFixed(2)
+	}
+   }
 }

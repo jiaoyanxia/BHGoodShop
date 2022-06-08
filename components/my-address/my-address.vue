@@ -36,24 +36,26 @@
 
 	export default {
 		data() {
-			return {
-				address: {}
-			};
+			return {};
+		},
+		computed: {
+			...mapState('m_user', ['address']),
+			...mapGetters('m_user', ['addstr'])
 		},
 		methods: {
-			// ...mapMutations('m_user', ['updateAddress']),
+			...mapMutations('m_user', ['updateAddress']),
+			// 调用内部chooseAddress方式获取人物地址信息
 			async chooseAddress() {
 				const [err, succ] = await uni.chooseAddress().catch(err => err)
 				if (err === null && succ.errMsg === 'chooseAddress:ok') {
-					this.address = succ
-					// this.updateAddress(succ)
+					this.updateAddress(succ)
 				}
 
-				// if (err && (err.errMsg === 'chooseAddress:fail auth deny' || err.errMsg ===
-				// 		'chooseAddress:fail authorize no response')) {
-				// 	// 通过调用这个方法，让用户重新授权
-				// 	this.reAuth()
-				// }
+				if (err && (err.errMsg === 'chooseAddress:fail auth deny' || err.errMsg ===
+						'chooseAddress:fail authorize no response')) {
+					// 通过调用这个方法，让用户重新授权
+					this.reAuth()
+				}
 			},
 			// 让用户重新授权
 			async reAuth() {
@@ -76,64 +78,60 @@
 					}
 				})
 			}
-		},
-		computed: {
-			// ...mapState('m_user', ['address']),
-			// ...mapGetters('m_user', ['addstr'])
 		}
 	}
 </script>
 
- 
- <style lang="scss">
-	 // 底部边框线的样式
-	 .address-border {
-	   display: block;
-	   width: 100%;
-	   height: 5px;
-	 }
-	 
-	 // 选择收货地址的盒子
-	 .address-choose-box {
-	   height: 90px;
-	   display: flex;
-	   align-items: center;
-	   justify-content: center;
-	 }
-	 
-	 // 渲染收货信息的盒子
-	 .address-info-box {
-	   font-size: 12px;
-	   height: 90px;
-	   display: flex;
-	   flex-direction: column;
-	   justify-content: center;
-	   padding: 0 5px;
-	 
-	   // 第一行
-	   .row1 {
-	     display: flex;
-	     justify-content: space-between;
-	 
-	     .row1-right {
-	       display: flex;
-	       align-items: center;
-	 
-	       .phone {
-	         margin-right: 5px;
-	       }
-	     }
-	   }
-	 
-	   // 第二行
-	   .row2 {
-	     display: flex;
-	     align-items: center;
-	     margin-top: 10px;
-	 
-	     .row2-left {
-	       white-space: nowrap;
-	     }
-	   }
-	 }
- </style>
+
+<style lang="scss">
+	// 底部边框线的样式
+	.address-border {
+		display: block;
+		width: 100%;
+		height: 5px;
+	}
+
+	// 选择收货地址的盒子
+	.address-choose-box {
+		height: 90px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	// 渲染收货信息的盒子
+	.address-info-box {
+		font-size: 12px;
+		height: 90px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: 0 5px;
+
+		// 第一行
+		.row1 {
+			display: flex;
+			justify-content: space-between;
+
+			.row1-right {
+				display: flex;
+				align-items: center;
+
+				.phone {
+					margin-right: 5px;
+				}
+			}
+		}
+
+		// 第二行
+		.row2 {
+			display: flex;
+			align-items: center;
+			margin-top: 10px;
+
+			.row2-left {
+				white-space: nowrap;
+			}
+		}
+	}
+</style>
